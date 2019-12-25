@@ -29,6 +29,9 @@
 
 ![Recordit GIF](http://g.recordit.co/3PDMIXfRE9.gif)
 
+## Full Report
+
+![Recordit GIF](http://g.recordit.co/BOTzImC5aA.gif)
 
 ## UML Diagram
 
