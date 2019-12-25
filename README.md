@@ -1,6 +1,7 @@
 <a href="http://aybu.edu.tr"><img src="https://pbs.twimg.com/profile_images/746983711665709056/IqO2q_wg_400x400.jpg" title="CENG201 OOP Project" alt="CENG201 OOP Project" width=200 height=200></a>
 
 # Detectify (a VirusTotal Desktop Application)
+<img src="https://raw.githubusercontent.com/canumay/detectify/master/src/Images/logo.png" title="CENG201 OOP Project" alt="CENG201 OOP Project" height=200>
 
 > Detectify is a free file, hash and URL scanning system based on VirusTotal.  
 
