@@ -29,6 +29,7 @@ public class AntivirusParser {
     public String scanResponse;
     public boolean isParseSuccess = false;
     public String scanId;
+    public String permaLink;
 
     public AntivirusParser(String result, boolean isFile) throws AWTException {
         this.results = new ArrayList();
@@ -72,6 +73,7 @@ public class AntivirusParser {
             this.scanDate = jsonObject.get("scan_date").toString();
             this.total = Integer.parseInt(jsonObject.get("total").toString());
             this.positives = Integer.parseInt(jsonObject.get("positives").toString());
+            this.permaLink = jsonObject.get("permalink").toString();
             String fileType = this.isFile == true ? "file" : "url";
             if (this.positives > 0) {
                 Notify.displayTray(String.format("Warning, %d malware detected on that %s!", this.positives, fileType), "error");
@@ -98,6 +100,10 @@ public class AntivirusParser {
             output += this.results.get(i).toString() + "\n";
         }
         return output;
+    }
+    
+    public String getPermaLink(){
+        return permaLink;
     }
 
     public String getMd5() {

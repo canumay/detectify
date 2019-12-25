@@ -44,7 +44,8 @@ import javax.swing.table.DefaultTableModel;
  * @author QP Pulse Plus
  */
 public class GUI extends javax.swing.JFrame {
-
+    String currentReportURL;
+    
     @Override
     public synchronized void setIconImages(List<? extends Image> icons) {
         super.setIconImages(icons);
@@ -86,6 +87,10 @@ public class GUI extends javax.swing.JFrame {
         this.detectifyDB.update(this.apiKeyText.getText());
         this.getAPIKey();
     }
+    
+    public void setCurrentReportURL(String permaLink){
+        this.currentReportURL = permaLink;
+    }
 
     public void getScannedFiles() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -117,6 +122,7 @@ public class GUI extends javax.swing.JFrame {
         AntivirusParser parser = new AntivirusParser(content, false);
         if (parser.scanResponse != null) {
             if (parser.isScanSuccess) {
+                this.setCurrentReportURL(parser.getPermaLink());
                 if (save) {
                     this.detectifyDB.insert(url, parser.scanId, "url", null, null, null);
                 }
@@ -263,6 +269,7 @@ public class GUI extends javax.swing.JFrame {
         AntivirusParser parser = new AntivirusParser(content, true);
         if (parser.scanResponse != null) {
             if (parser.isScanSuccess) {
+                this.setCurrentReportURL(parser.getPermaLink());
                 this.detectifyDB.insert(Paths.get(fileName).getFileName().toString(), parser.scanId, "file", Paths.get(fileName).getFileName().toString(), String.valueOf(files.get(0).length()), (files.get(0).getName().substring(files.get(0).getName().lastIndexOf("."), files.get(0).getName().length())));
                 Cursor cursor2 = new Cursor(Cursor.DEFAULT_CURSOR);
                 setCursor(cursor2);
@@ -357,6 +364,7 @@ public class GUI extends javax.swing.JFrame {
         String content = checker.get(params, true);
         AntivirusParser parser = new AntivirusParser(content, true);
         if (parser.isScanSuccess) {
+            this.setCurrentReportURL(parser.getPermaLink());
             SizeLabel.setVisible(true);
             jLabel38.setVisible(true);
             jLabel41.setVisible(true);
@@ -778,7 +786,6 @@ public class GUI extends javax.swing.JFrame {
         ResultPanel6 = new javax.swing.JPanel();
         AboutPanel = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
@@ -802,6 +809,7 @@ public class GUI extends javax.swing.JFrame {
         jPanel15 = new javax.swing.JPanel();
         StatusLabel = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
         FileTypeLabel = new javax.swing.JLabel();
         ScannedFilesStable = new javax.swing.JPanel();
         ScannedFilesInfoBoxes = new javax.swing.JPanel();
@@ -1937,21 +1945,6 @@ public class GUI extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel30.setText("Detectify is a free file, hash and URL scanning system based on VirusTotal.");
 
-        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel36.setText("How to Use?");
-        jLabel36.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel36MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel36MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel36MousePressed(evt);
-            }
-        });
-
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1985,9 +1978,6 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(jLabel46)
                             .addComponent(jLabel48))
                         .addContainerGap(3396, Short.MAX_VALUE))))
-            .addGroup(AboutPanelLayout.createSequentialGroup()
-                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         AboutPanelLayout.setVerticalGroup(
             AboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2005,9 +1995,7 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel48))
                     .addComponent(jLabel22))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
-                .addComponent(jLabel36)
-                .addContainerGap(1899, Short.MAX_VALUE))
+                .addContainerGap(2201, Short.MAX_VALUE))
         );
 
         Pannels.add(AboutPanel, "card5");
@@ -2088,6 +2076,21 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-checkmark-15.png"))); // NOI18N
 
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setText("Full Report");
+        jLabel36.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel36MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel36MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel36MousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
@@ -2096,15 +2099,17 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(StatusLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel42)
-                .addGap(0, 559, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 479, Short.MAX_VALUE)
+                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addComponent(jLabel36)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         ResultPanelStable.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 620, -1));
@@ -2299,7 +2304,7 @@ public class GUI extends javax.swing.JFrame {
         ContentPanel.add(MainPanel, "card3");
 
         GeneralPanel.add(ContentPanel);
-        ContentPanel.setBounds(210, 0, 4034, 490);
+        ContentPanel.setBounds(210, 0, 4109, 490);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2964,7 +2969,7 @@ public class GUI extends javax.swing.JFrame {
     private void jLabel36MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel36MousePressed
         try {
             try {
-                Desktop.getDesktop().browse(new URL("https://www.youtube.com/watch?v=RJtk_UJdTKY&feature=youtu.be").toURI());
+                Desktop.getDesktop().browse(new URL(this.currentReportURL.replace("\"", "")).toURI());
             } catch (IOException ex) {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
