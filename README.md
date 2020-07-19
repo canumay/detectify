@@ -43,7 +43,7 @@
 
 | <a href="https://github.com/canumay" target="_blank">**@canumay**</a> | <a href="https://github.com/AlperErkol" target="_blank">**@AlperErkol**</a> | <a href="https://github.com/lumiaveled" target="_blank">**@lumiaveled**</a> |
 | :---: |:---:| :---:|
-| [![FVCproductions](https://pbs.twimg.com/profile_images/1048236810743271425/LQytBfaC_400x400.jpg)](http://canumay.com.tr)    | [![FVCproductions](https://i.ibb.co/pPtDRLZ/image.png)](https://github.com/AlperErkol) | [![FVCproductions](https://i.ibb.co/sKHXtfd/image.png)]("http://github.com/lumiaveled)  |
+| [![Can UMAY](readme/can.png)](http://canumay.com.tr)    | [![Alper ERKOL](https://i.ibb.co/pPtDRLZ/image.png)](https://github.com/AlperErkol) | [![Dogukan EREN](https://i.ibb.co/sKHXtfd/image.png)]("http://github.com/lumiaveled)  |
 | <a href="http://github.com/canumay" target="_blank">`Can Umay`</a> | <a href="http://github.com/AlperErkol" target="_blank">`Alper Erkol`</a> | <a href="http://github.com/lumiaveled" target="_blank">`Doğukan Eren`</a> |
 
 
