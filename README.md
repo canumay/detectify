@@ -41,7 +41,7 @@
 
 > Or Contributors/People
 
-| <a href="https://github.com/canumay" target="_blank">**@canumay**</a> | <a href="https://github.com/AlperErkol" target="_blank">**@AlperErkol**</a> | <a href="https://github.com/lumiaveled" target="_blank">**@dogukaneren**</a> |
+| <a href="https://github.com/canumay" target="_blank">**@canumay**</a> | <a href="https://github.com/AlperErkol" target="_blank">**@AlperErkol**</a> | <a href="https://github.com/dogukaneren" target="_blank">**@dogukaneren**</a> |
 | :---: |:---:| :---:|
 | <img src="readme/can.png" width="350">    | [![Alper ERKOL](https://i.ibb.co/pPtDRLZ/image.png)](https://github.com/AlperErkol) | [![Dogukan EREN](https://i.ibb.co/sKHXtfd/image.png)]("http://github.com/dogukaneren)  |
 | <a href="http://github.com/canumay" target="_blank">`Can Umay`</a> | <a href="http://github.com/AlperErkol" target="_blank">`Alper Erkol`</a> | <a href="http://github.com/dogukaneren" target="_blank">`Doğukan Eren`</a> |
